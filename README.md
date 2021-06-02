@@ -77,13 +77,27 @@ snmpd_syscontact: Root <root@localhost>
 
 snmpd_dontlogtcpwrappersconnects: "yes"
 
-snmpd_processes:
-  - name: mountd
-  - name: ntalkd
-    maximum: 4
-  - name: sendmail
-    minimum: 1
-    maximum: 10
+# snmpd_processes:
+#   - name: mountd
+#   - name: ntalkd
+#     maximum: 4
+#   - name: sendmail
+#     minimum: 1
+#     maximum: 10
+#
+# snmpd_scripts:
+#   - name: shelltest
+#     program: /bin/sh
+#     arguments: /tmp/shtest
+
+snmpd_disks:
+  - path: /
+    minimum: 10000
+
+snmpd_load:
+  one_minute_average: 12
+  five_minute_average: 14
+  fifteen_minute_average: 14
 ```
 
 ## [Requirements](#requirements)

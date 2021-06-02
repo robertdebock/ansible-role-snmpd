@@ -164,3 +164,63 @@
   when:
     - snmpd_processes is defined
     - item.maximum is defined
+
+- name: test if snmpd_scripts is set correctly
+  ansible.builtin.assert:
+    that:
+      - snmpd_scripts is iterable
+    quiet: yes
+  when:
+    - snmpd_scripts is defined
+
+- name: test if mandatory item in snmpd_scripts is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.name is defined
+      - item.name is string
+      - item.program is defined
+      - item.program is string
+      - item.arguments is defined
+      - item.arguments is string
+    quiet: yes
+  loop: "{{ snmpd_scripts }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - snmpd_scripts is defined
+
+- name: test if snmpd_disks is set correctly
+  ansible.builtin.assert:
+    that:
+      - snmpd_disks is iterable
+    quiet: yes
+  when:
+    - snmpd_disks is defined
+
+- name: test if mandatory item in snmpd_disks is set correctly
+  ansible.builtin.assert:
+    that:
+      - item.path is defined
+      - item.path is string
+      - item.minimum is defined
+      - item.minimum is number
+    quiet: yes
+  loop: "{{ snmpd_disks }}"
+  loop_control:
+    label: "{{ item.path }}"
+  when:
+    - snmpd_disks is defined
+
+- name: test if snmpd_load is set correctly
+  ansible.builtin.assert:
+    that:
+      - snmpd_load is mapping
+      - snmpd_load.one_minute_average is defined
+      - snmpd_load.one_minute_average is defined
+      - snmpd_load.five_minute_average is defined
+      - snmpd_load.five_minute_average is number
+      - snmpd_load.fifteen_minute_average is defined
+      - snmpd_load.fifteen_minute_average is number
+    quiet: yes
+  when:
+    - snmpd_load is defined
