@@ -1,0 +1,30 @@
+---
+- name: Verify
+  hosts: all
+  become: yes
+  gather_facts: yes
+
+  vars:
+    _snmpd_snmpwalk_package:
+      RedHat:
+        - net-snmp-utils
+      default:
+        - snmp
+    snmpd_snmpwalk_package: "{{ _snmpd_snmpwalk_package[ansible_os_family] | default(_snmpd_snmpwalk_package['default']) }}"
+
+  tasks:
+    - name: install snmpwalk
+      package:
+        name: "{{ snmpd_snmpwalk_package }}"
+      notify:
+        - remove snmpwalk
+
+    - name: try snmpwalk
+      ansible.builtin.command:
+        cmd: snmpwalk -v 1 localhost -c public
+
+  handlers:
+    - name: remove snmpwalk
+      package:
+        name: "{{ snmpd_snmpwalk_package }}"
+        state: absent
