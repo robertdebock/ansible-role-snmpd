@@ -13,7 +13,7 @@
       RedHat:
         - net-snmp-utils
       Suse:
-        - net-snmp-utils
+        - net-snmp
     snmpd_snmpwalk_package: "{{ _snmpd_snmpwalk_package[ansible_os_family] | default(_snmpd_snmpwalk_package['default']) }}"
 
   tasks:
@@ -25,7 +25,7 @@
 
     - name: try snmpwalk
       ansible.builtin.command:
-        cmd: snmpwalk -v 1 localhost -c public
+        cmd: snmpwalk -v1 localhost -c public
 
   handlers:
     - name: remove snmpwalk
