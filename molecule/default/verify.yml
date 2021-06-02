@@ -6,10 +6,14 @@
 
   vars:
     _snmpd_snmpwalk_package:
-      RedHat:
-        - net-snmp-utils
       default:
         - snmp
+      Alpine:
+        - net-snmp-tools
+      RedHat:
+        - net-snmp-utils
+      Suse:
+        - net-snmp-utils
     snmpd_snmpwalk_package: "{{ _snmpd_snmpwalk_package[ansible_os_family] | default(_snmpd_snmpwalk_package['default']) }}"
 
   tasks:
