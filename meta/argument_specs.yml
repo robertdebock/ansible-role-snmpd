@@ -172,7 +172,7 @@ argument_specs:
             type: str
           minimum:
             description: "The alarm threshold (in KB) for this disk."
-            required: yes
+            required: no
             type: int
       snmpd_load:
         type: dics
