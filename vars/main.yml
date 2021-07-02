@@ -6,8 +6,9 @@ _snmpd_packages:
     - snmpd
   Alpine:
     - net-snmp
-  RedHat:
+  RedHat: &RHEL
     - net-snmp
+  Rocky: *RHEL
   Suse:
     - net-snmp
 
