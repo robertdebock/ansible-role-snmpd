@@ -10,8 +10,9 @@
         - snmp
       Alpine:
         - net-snmp-tools
-      RedHat:
+      RedHat: &redhat_snmpwalk_package
         - net-snmp-utils
+      Rocky: *redhat_snmpwalk_package
       Suse:
         - net-snmp
     snmpd_snmpwalk_package: "{{ _snmpd_snmpwalk_package[ansible_os_family] | default(_snmpd_snmpwalk_package['default']) }}"
