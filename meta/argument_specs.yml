@@ -175,7 +175,7 @@ argument_specs:
             required: no
             type: int
       snmpd_load:
-        type: dics
+        type: dict
         elements: int
         required: no
         description: "The load thresholds."
