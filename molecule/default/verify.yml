@@ -29,6 +29,7 @@
         cmd: snmpwalk -v1 -c public localhost
 
   handlers:
+
     - name: remove snmpwalk
       ansible.builtin.package:
         name: "{{ snmpd_snmpwalk_package }}"
