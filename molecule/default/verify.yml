@@ -18,19 +18,19 @@
     snmpd_snmpwalk_package: "{{ _snmpd_snmpwalk_package[ansible_os_family] | default(_snmpd_snmpwalk_package['default']) }}"
 
   tasks:
-    - name: install snmpwalk
+    - name: Install snmpwalk
       ansible.builtin.package:
         name: "{{ snmpd_snmpwalk_package }}"
       notify:
         - remove snmpwalk
 
-    - name: try snmpwalk
+    - name: Try snmpwalk
       ansible.builtin.command:
         cmd: snmpwalk -v1 -c public localhost
 
   handlers:
 
-    - name: remove snmpwalk
+    - name: Remove snmpwalk
       ansible.builtin.package:
         name: "{{ snmpd_snmpwalk_package }}"
         state: absent
