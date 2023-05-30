@@ -22,14 +22,13 @@
       ansible.builtin.package:
         name: "{{ snmpd_snmpwalk_package }}"
       notify:
-        - remove snmpwalk
+        - Remove snmpwalk
 
     - name: Try snmpwalk
       ansible.builtin.command:
         cmd: snmpwalk -v1 -c public localhost
 
   handlers:
-
     - name: Remove snmpwalk
       ansible.builtin.package:
         name: "{{ snmpd_snmpwalk_package }}"
