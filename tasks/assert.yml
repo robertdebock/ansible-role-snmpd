@@ -12,10 +12,13 @@
     that:
       - item.name is defined
       - item.name is string
+      - item.name is not none
       - item.source is defined
       - item.source is string
+      - item.source is not none
       - item.community is defined
       - item.community is string
+      - item.community is not none
     quiet: yes
   loop: "{{ snmpd_security_names }}"
   loop_control:
@@ -33,11 +36,13 @@
     that:
       - item.name is defined
       - item.name is string
+      - item.name is not none
       - item.security_model is defined
       - item.security_model is string
       - item.security_model in [ "v1", "v2c" ]
       - item.security_name is defined
       - item.security_name is string
+      - item.security_name is not none
       # - item.security_name in snmpd_security_names
     quiet: yes
   loop: "{{ snmpd_groups }}"
@@ -56,11 +61,14 @@
     that:
       - item.name is defined
       - item.name is string
+      - item.name is not none
       - item.type is defined
       - item.type is string
+      - item.type is not none
       - item.type in [ "included", "excluded" ]
       - item.subtree is defined
       - item.subtree is string
+      - item.subtree is not none
     quiet: yes
   loop: "{{ snmpd_views }}"
   loop_control:
@@ -78,22 +86,28 @@
     that:
       - item.group is defined
       - item.group is string
-      # - item.group in snmpd_groups
+      - item.group is not none
       - item.context is defined
       - item.context is string
+      - item.context is not none
       - item.security_model is defined
       - item.security_model is string
       - item.security_model in [ "any", "v1", "v2c", "usm" ]
       - item.security_level is defined
       - item.security_level is string
+      - item.security_level is not none
       - item.prefix is defined
       - item.prefix is string
+      - item.prefix is not none
       - item.read is defined
       - item.read is string
+      - item.read is not none
       - item.write is defined
       - item.write is string
+      - item.write is not none
       - item.notif is defined
       - item.notif is string
+      - item.notif is not none
     quiet: yes
   loop: "{{ snmpd_accesses }}"
   loop_control:
