@@ -1,4 +1,4 @@
-# Ansible role [snmpd](#snmpd)
+# [Ansible role snmpd](#snmpd)
 
 Install and configure snmpd on your system.
 
