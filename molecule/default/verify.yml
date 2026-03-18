@@ -15,7 +15,7 @@
       Rocky: *redhat_snmpwalk_package
       Suse:
         - net-snmp
-    snmpd_snmpwalk_package: "{{ _snmpd_snmpwalk_package[ansible_os_family] | default(_snmpd_snmpwalk_package['default']) }}"
+    snmpd_snmpwalk_package: "{{ _snmpd_snmpwalk_package[ansible_facts['os_family']] | default(_snmpd_snmpwalk_package['default']) }}"
 
   tasks:
     - name: Install snmpwalk
